@@ -15,7 +15,8 @@ function SettingsAlarm() {
     const [soundTid, setSoundTid] = useState(null);
 
     const handleSongChange = (e) => {
-        sound.play(e.target.value, settings.alarm.volume);
+        sound.load(e.target.value);
+        sound.play(settings.alarm.volume);
         settings.settingsChange({
             ...settings,
             alarm: {
@@ -26,8 +27,9 @@ function SettingsAlarm() {
     }
 
     const handleVolumeChange = (e, newValue) => {
+        sound.load(settings.alarm.name);
         const tid = setTimeout(() => {
-            sound.play(settings.alarm.name, newValue);
+            sound.play(newValue);
         }, 500);
 
         setSoundTid((prevTid) => {

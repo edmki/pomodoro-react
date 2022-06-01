@@ -45,6 +45,10 @@ function Timer(props) {
 	}, [settings]);
 
 	useEffect(() => {
+		sound.load(settings.alarm.name);
+	}, [settings.alarm.name]);
+
+	useEffect(() => {
 		if (timerId !== null && currentTime <= 0) {
 			onTimerEnd();
 		}
@@ -129,7 +133,7 @@ function Timer(props) {
 	}
 
 	const playSound = () => {
-		sound.play(settings.alarm.name, settings.alarm.volume);
+		sound.play(settings.alarm.volume);
 	}
 
 	return (

@@ -7,10 +7,13 @@ const sounds = {
 }
 
 const sound = {
-    play: function(name, volume = 50) {
-        const audio = new Audio(sounds[name]);
-        audio.volume = volume / 100;
-        audio.play();
+    audio: null,
+    load: (name) => {
+        sound.audio = new Audio(sounds[name]);
+    },
+    play: function(volume = 50) {
+        sound.audio.volume = volume / 100;
+        sound.audio.play();
     },
 }
 
